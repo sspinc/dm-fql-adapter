@@ -1,0 +1,115 @@
+GIT
+  remote: git://github.com/datamapper/dm-core.git
+  revision: a68434e6e1d92a1fc3ef4fdcc2deaf20b6561b5c
+  specs:
+    dm-core (1.0.2)
+      addressable (~> 2.2)
+      extlib (~> 0.9.15)
+
+GIT
+  remote: git://github.com/datamapper/dm-migrations.git
+  revision: 03738a7748662267aa59dfc3405abca012ad0c56
+  specs:
+    dm-migrations (1.0.2)
+      dm-core (~> 1.0.2)
+
+GIT
+  remote: git://github.com/datamapper/extlib.git
+  revision: f54d775f868941ceb2c43d154e719c73e9366596
+  specs:
+    extlib (0.9.16)
+
+GIT
+  remote: git://github.com/snusnu/rspec
+  revision: daa261ae5798d56e6c9688e9d1e016b831fcd529
+  branch: heckle_fix_plus_gemfile
+  specs:
+    rspec (1.3.0)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    Saikuro (1.1.0)
+    activesupport (3.0.0)
+    addressable (2.2.1)
+    arrayfields (4.7.4)
+    chronic (0.2.3)
+      hoe (>= 1.2.1)
+    churn (0.0.12)
+      chronic (~> 0.2.3)
+      hirb
+      json_pure
+      main
+      ruby_parser (~> 2.0.4)
+      sexp_processor (~> 3.0.3)
+    fattr (2.1.0)
+    flay (1.4.1)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    flog (2.5.0)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    gemcutter (0.6.1)
+    git (1.2.5)
+    hirb (0.3.3)
+    hoe (2.6.2)
+      rake (>= 0.8.7)
+      rubyforge (>= 2.0.4)
+    jeweler (1.4.0)
+      gemcutter (>= 0.1.0)
+      git (>= 1.2.5)
+      rubyforge (>= 2.0.0)
+    json_pure (1.4.6)
+    main (4.2.0)
+      arrayfields (>= 4.7.4)
+      fattr (>= 2.1.0)
+    metric_fu (1.5.1)
+      Saikuro (>= 1.1.0)
+      activesupport (>= 2.0.0)
+      chronic (>= 0.2.3)
+      churn (>= 0.0.7)
+      flay (>= 1.2.1)
+      flog (>= 2.2.0)
+      rails_best_practices (>= 0.3.16)
+      rcov (>= 0.8.3.3)
+      reek (>= 1.2.6)
+      roodi (>= 2.1.0)
+    rails_best_practices (0.4.0)
+      ruby2ruby (>= 1.2.4)
+      ruby_parser (>= 2.0.4)
+    rake (0.8.7)
+    rcov (0.9.8)
+    reek (1.2.8)
+      ruby2ruby (~> 1.2)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    roodi (2.1.0)
+      ruby_parser
+    ruby2ruby (1.2.5)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    ruby_parser (2.0.5)
+      sexp_processor (~> 3.0)
+    rubyforge (2.0.4)
+      json_pure (>= 1.1.7)
+    sexp_processor (3.0.5)
+    yard (0.6.1)
+    yardstick (0.1.0)
+      yard (~> 0.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  dm-core (~> 1.0.2)!
+  dm-migrations (~> 1.0.2)!
+  extlib (~> 0.9.15)!
+  jeweler (~> 1.4)
+  metric_fu (~> 1.3)
+  rake (~> 0.8.7)
+  rcov (~> 0.9.7)
+  reek (~> 1.2.7)
+  roodi (~> 2.1)
+  rspec (~> 1.3)!
+  yard (~> 0.5)
+  yardstick (~> 0.1)
