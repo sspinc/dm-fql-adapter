@@ -7,13 +7,6 @@ GIT
       extlib (~> 0.9.15)
 
 GIT
-  remote: git://github.com/datamapper/dm-migrations.git
-  revision: 03738a7748662267aa59dfc3405abca012ad0c56
-  specs:
-    dm-migrations (1.0.2)
-      dm-core (~> 1.0.2)
-
-GIT
   remote: git://github.com/datamapper/extlib.git
   revision: f54d775f868941ceb2c43d154e719c73e9366596
   specs:
@@ -118,7 +111,6 @@ DEPENDENCIES
   autotest-fsevent
   autotest-growl
   dm-core (~> 1.0.2)!
-  dm-migrations (~> 1.0.2)!
   extlib (~> 0.9.15)!
   jeweler (~> 1.4)
   metric_fu (~> 1.3)

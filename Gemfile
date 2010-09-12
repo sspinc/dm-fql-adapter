@@ -48,8 +48,6 @@ end
 
 group(:development) do # Development dependencies (as in the gemspec)
 
-  gem 'dm-migrations',   DM_VERSION, :git => "#{DATAMAPPER}/dm-migrations.git"
-
   gem 'rake',            '~> 0.8.7'
   gem 'rspec',           '~> 1.3', :git => 'git://github.com/snusnu/rspec', :branch => 'heckle_fix_plus_gemfile'
   gem 'jeweler',         '~> 1.4'
@@ -73,7 +71,7 @@ group :datamapper do # We need this because we want to pin these dependencies to
   end
 
   plugins = ENV['PLUGINS'] || ENV['PLUGIN']
-  plugins = plugins.to_s.tr(',', ' ').split.push('dm-migrations').uniq
+  plugins = plugins.to_s.tr(',', ' ').split.uniq
 
   plugins.each do |plugin|
     gem plugin, DM_VERSION, :git => "#{DATAMAPPER}/#{plugin}.git"
