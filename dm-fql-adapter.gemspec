@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{dm-fql-adapter}
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Gabor Ratky"]
@@ -19,9 +19,13 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
      ".gitignore",
+     "Gemfile",
+     "Gemfile.lock",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
+     "VERSION",
+     "dm-fql-adapter.gemspec",
      "lib/dm-fql-adapter.rb",
      "lib/dm-fql-adapter/adapter.rb",
      "lib/dm-fql-adapter/spec/setup.rb",
@@ -29,7 +33,11 @@ Gem::Specification.new do |s|
      "spec/rcov.opts",
      "spec/resources/user.rb",
      "spec/spec.opts",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "tasks/local_gemfile.rake",
+     "tasks/spec.rake",
+     "tasks/yard.rake",
+     "tasks/yardstick.rake"
   ]
   s.has_rdoc = %q{yard}
   s.homepage = %q{http://github.com/sspinc/dm-fql-adapter}
@@ -40,6 +48,7 @@ Gem::Specification.new do |s|
   s.summary = %q{FQL Adapter for DataMapper}
   s.test_files = [
     "spec/adapter_spec.rb",
+     "spec/resources/user.rb",
      "spec/spec_helper.rb"
   ]
 
@@ -49,13 +58,19 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<dm-core>, ["~> 1.0.2"])
+      s.add_runtime_dependency(%q<sqldsl>, ["~> 1.4.6"])
+      s.add_runtime_dependency(%q<mini_fb>, ["~> 1.1.3"])
       s.add_development_dependency(%q<rspec>, ["~> 1.3"])
     else
       s.add_dependency(%q<dm-core>, ["~> 1.0.2"])
+      s.add_dependency(%q<sqldsl>, ["~> 1.4.6"])
+      s.add_dependency(%q<mini_fb>, ["~> 1.1.3"])
       s.add_dependency(%q<rspec>, ["~> 1.3"])
     end
   else
     s.add_dependency(%q<dm-core>, ["~> 1.0.2"])
+    s.add_dependency(%q<sqldsl>, ["~> 1.4.6"])
+    s.add_dependency(%q<mini_fb>, ["~> 1.1.3"])
     s.add_dependency(%q<rspec>, ["~> 1.3"])
   end
 end

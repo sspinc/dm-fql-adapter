@@ -40,6 +40,9 @@ DM_VERSION = '~> 1.0.2'
 group :runtime do # Runtime dependencies (as in the gemspec)
 
   gem 'dm-core',         DM_VERSION, :git => "#{DATAMAPPER}/dm-core.git"
+  
+  gem 'sqldsl',          '~> 1.4.6'
+  gem 'mini_fb',         '~> 1.1.3'
 
 end
 
@@ -51,6 +54,14 @@ group(:development) do # Development dependencies (as in the gemspec)
   gem 'rspec',           '~> 1.3', :git => 'git://github.com/snusnu/rspec', :branch => 'heckle_fix_plus_gemfile'
   gem 'jeweler',         '~> 1.4'
 
+end
+
+group(:autotest) do # Test dependencies (Mac-specific)
+  
+  gem 'autotest'
+  gem 'autotest-growl'
+  gem 'autotest-fsevent'
+  
 end
 
 group :datamapper do # We need this because we want to pin these dependencies to their git master sources
@@ -80,3 +91,4 @@ group :quality do # These gems contain rake tasks that check the quality of the 
   gem 'yardstick',       '~> 0.1'
 
 end
+
