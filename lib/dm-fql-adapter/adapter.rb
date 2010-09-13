@@ -22,7 +22,8 @@ module DataMapper
       end
 
       def read(query)
-        session.fql(compile(query))
+        DataMapper.logger.debug(statement = compile(query))
+        session.fql(statement)
       end
       
     end # class FqlAdapter
