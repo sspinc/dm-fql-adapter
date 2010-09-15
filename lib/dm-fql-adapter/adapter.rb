@@ -16,7 +16,7 @@ module DataMapper
       def compile(query)
         raise NotSupportedError, 'A query must contain at least one condition.' if query.conditions.empty?
         raise NotSupportedError, 'A query must include at least one indexed column in its conditions.' unless query.conditions.map(&:subject).any? { |property| property.index }
-        Select[query.fields.map(&:name)].from[query.model.storage_name(name).to_sym].where do
+        statement = Select[query.fields.map(&:name)].from[query.model.storage_name(name).to_sym].where do
           query.conditions.each do |condition|
             column, value = condition.subject.name, condition.value
             case condition
@@ -30,12 +30,22 @@ module DataMapper
             when Query::Conditions::RegexpComparison then raise NotSupportedError, 'Regular expression comparisons are not supported in FQL.'
             end
           end
-        end.to_sql
+        end
+        unless query.order.length == 1 && query.order.first.target.key?
+          query.order.each do |direction|
+            statement.order_by(direction.target.name)
+          end
+        end
+        statement.to_sql
       end
 
       def read(query)
         DataMapper.logger.debug(statement = compile(query))
         session.fql(statement)
+      end
+      
+      def select(fql)
+        session.fql(fql)
       end
       
     end # class FqlAdapter

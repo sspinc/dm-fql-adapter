@@ -103,16 +103,27 @@ describe DataMapper::Adapters::FqlAdapter do
       let(:query) { DataMapper::Query.new(repository, User, :conditions => { :uid => [1, 2] }) }
       it { should == "select uid, name from user where uid in (1, 2)" }
     end
+    
+    context 'when ordering by a column' do
+      let(:query) { DataMapper::Query.new(repository, Post, :conditions => { :source_id => 1 }, :order => :created_time) }
+      it { should == "select post_id, source_id, created_time from stream where source_id = 1 order by created_time" }
+    end
+
+    context 'when ordering by a column descending' do
+      let(:query) { DataMapper::Query.new(repository, Post, :conditions => { :source_id => 1 }, :order => :created_time.desc ) }
+      it # { should == "select post_id, source_id, created_time from stream where source_id = 1 order by created_time desc" }
+    end
+    
   end
   
   describe '#read' do
     let(:session) { mock(MiniFB::OAuthSession) }
     let(:adapter) { DataMapper.setup(:default, :adapter => :fql, :session => session) }
+    subject { adapter.read(query) }
     
     context 'when querying for a single resource' do
       let(:query) { mock(DataMapper::Query) }
       let(:fql) { 'select uid, name from user where uid = 1' }
-      subject { adapter.read(query) }
       
       before do
         adapter.should_receive(:compile).with(query).and_return(fql)
@@ -120,6 +131,20 @@ describe DataMapper::Adapters::FqlAdapter do
       end
       
       it { should == [ { 'uid' => 1, 'name' => 'Gabor Ratky' }]}
+    end
+  end
+
+  describe '#select' do
+    subject { adapter.select(fql) }
+    
+    context 'when querying using raw FQL' do
+      let(:fql) { "select uid, name from user where uid = 1"  }
+      
+      before do
+        before do
+          session.should_receive(:fql).with(fql).and_return([Hashie::Mash.new({:uid => 1, :name => 'Gabor Ratky'})])
+        end
+      end
     end
   end
 end
