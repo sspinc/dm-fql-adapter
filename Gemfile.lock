@@ -7,6 +7,17 @@ GIT
       extlib (~> 0.9.15)
 
 GIT
+  remote: git://github.com/datamapper/dm-types.git
+  revision: 6799651c900bb188ce2d25558a3d4b25c3160b22
+  specs:
+    dm-types (1.0.2)
+      dm-core (~> 1.0.2)
+      fastercsv (~> 1.5.3)
+      json_pure (~> 1.4)
+      stringex (~> 1.1.0)
+      uuidtools (~> 2.1.1)
+
+GIT
   remote: git://github.com/datamapper/extlib.git
   revision: f54d775f868941ceb2c43d154e719c73e9366596
   specs:
@@ -39,6 +50,7 @@ GEM
       main
       ruby_parser (~> 2.0.4)
       sexp_processor (~> 3.0.3)
+    fastercsv (1.5.3)
     fattr (2.1.0)
     flay (1.4.1)
       ruby_parser (~> 2.0)
@@ -98,7 +110,9 @@ GEM
       json_pure (>= 1.1.7)
     sexp_processor (3.0.5)
     sqldsl (1.4.6)
+    stringex (1.1.0)
     sys-uname (0.8.4)
+    uuidtools (2.1.1)
     yard (0.6.1)
     yardstick (0.1.0)
       yard (~> 0.2)
@@ -111,6 +125,7 @@ DEPENDENCIES
   autotest-fsevent
   autotest-growl
   dm-core (~> 1.0.2)!
+  dm-types (~> 1.0.2)!
   extlib (~> 0.9.15)!
   jeweler (~> 1.4)
   metric_fu (~> 1.3)

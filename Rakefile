@@ -17,6 +17,7 @@ begin
     gem.rubyforge_project = 'datamapper'
 
     gem.add_dependency 'dm-core', '~> 1.0.2'
+    gem.add_dependency 'dm-types', '~> 1.0.2'
     gem.add_dependency 'sqldsl', '~> 1.4.6'
     gem.add_dependency 'mini_fb', '~> 1.1.3'
     

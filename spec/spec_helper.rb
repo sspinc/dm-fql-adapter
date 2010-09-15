@@ -1,5 +1,5 @@
 require 'dm-core'
-require 'dm-core/spec/shared/adapter_spec'
+require 'dm-types'
 
 require 'dm-fql-adapter/spec/setup'
 

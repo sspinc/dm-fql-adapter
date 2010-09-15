@@ -1,5 +1,7 @@
 module DataMapper
   module Adapters
+    class NotSupportedError < Exception; end
+
     class FqlAdapter < AbstractAdapter
       
       def initialize(name, options={})
@@ -12,10 +14,20 @@ module DataMapper
       end
 
       def compile(query)
+        raise NotSupportedError, 'A query must contain at least one condition.' if query.conditions.empty?
+        raise NotSupportedError, 'A query must include at least one indexed column in its conditions.' unless query.conditions.map(&:subject).any? { |property| property.index }
         Select[query.fields.map(&:name)].from[query.model.storage_name(name).to_sym].where do
           query.conditions.each do |condition|
+            column, value = condition.subject.name, condition.value
             case condition
-            when Query::Conditions::EqualToComparison then equal condition.subject.name, condition.value
+            when Query::Conditions::EqualToComparison then equal column, value
+            when Query::Conditions::GreaterThanComparison then greater_than column, value
+            when Query::Conditions::GreaterThanOrEqualToComparison then greater_than_or_equal column, value
+            when Query::Conditions::LessThanComparison then less_than column, value
+            when Query::Conditions::LessThanOrEqualToComparison then less_than_or_equal column, value
+            when Query::Conditions::InclusionComparison then is_in column, value
+            when Query::Conditions::LikeComparison then raise NotSupportedError, 'Like comparisons are not supported in FQL.'
+            when Query::Conditions::RegexpComparison then raise NotSupportedError, 'Regular expression comparisons are not supported in FQL.'
             end
           end
         end.to_sql

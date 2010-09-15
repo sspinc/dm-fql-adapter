@@ -40,6 +40,7 @@ DM_VERSION = '~> 1.0.2'
 group :runtime do # Runtime dependencies (as in the gemspec)
 
   gem 'dm-core',         DM_VERSION, :git => "#{DATAMAPPER}/dm-core.git"
+  gem 'dm-types',        DM_VERSION, :git => "#{DATAMAPPER}/dm-types.git"
   
   gem 'sqldsl',          '~> 1.4.6'
   gem 'mini_fb',         '~> 1.1.3'
@@ -68,13 +69,6 @@ group :datamapper do # We need this because we want to pin these dependencies to
     gem 'extlib',        '~> 0.9.15', :git => "#{DATAMAPPER}/extlib.git", :require => nil
   else
     gem 'activesupport', '~> 3.0.0',  :git => 'git://github.com/rails/rails.git', :branch => '3-0-stable', :require => nil
-  end
-
-  plugins = ENV['PLUGINS'] || ENV['PLUGIN']
-  plugins = plugins.to_s.tr(',', ' ').split.uniq
-
-  plugins.each do |plugin|
-    gem plugin, DM_VERSION, :git => "#{DATAMAPPER}/#{plugin}.git"
   end
 
 end
